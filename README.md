@@ -255,9 +255,35 @@ See [C++ Programmer's Toolbox](#c-programmers-toolbox) for details.
         
 ## Naming
 
-I think for naming we should stick
-to
-[Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html#Naming).
+Paddle code adheres to the some broad naming conventions.
+
+When the convention is left open, in general, prefer the local conventions used in the file you are working on---e.g., in a struct whose data members all have `m_namesLikeThis`, prefer `m_anotherNameLikeThis` to `m_this_style`, even though the latter is found in other parts of the codebase.
+
+
+### Variables
+
+Prefer to use `lowerCamelCase` for all local variables. Global variables should be prefixed by `g` and use `CamelCase`(e.g., `gContext`).
+
+### Constants
+All constants should be prefixed with `k` and use `CamelCase`, e.g., `kInvalidHandle`. Prefer `constexpr` to `const` whenever possible.
+
+### Class data members
+
+As with variables, use `lowerCamelCase` for all data members. Additionally, private instance members should be suffixed with `_` (e.g., `cls_`, `baseCls_`). Prefer to leave public members unsuffixed.
+
+### Functions
+
+We generally **prefer** `lowerCamelCase` for header-exposed functions, including member functions, although we use `lower_case_with_underscores` as well (e.g., `hppl_init`), more commonly in file-local scopes. As usual, follow the local naming conventions of the file you are working in.
+
+If you are modeling a class after an existing pattern, such as an STL container, prefer to follow the appropriate conventions (e.g., `my_list::push_back` is preferred over `my_list::pushBack`).
+
+### Classes
+
+Classes use `UpperCamelCase`, except when modeling existing patterns like STL containers or smart pointers.
+
+### Namespaces
+
+New namespaces should use `lowercase`---and single-word namespaces are greatly prefered for common usage. For longer namespaces (e.g., `vasm_detail`), use `lower_case_with_underscores`.
 
 ## C++ Programmer's Toolbox
 
